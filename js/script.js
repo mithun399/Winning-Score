@@ -10,23 +10,39 @@ const btn2 = document.getElementById('btn2')
 const reset = document.getElementById('reset')
 
 
-let p1 = 0
-let p2 = 0
+var p1 = 0
+var p2 = 0
+    // p1 = p2 = oldscore
 let win = 5;
 
 let gameover = false
 
+function winner(oldscore, win) {
+    if (oldscore === win) {
+        gameover = true
+        btn1.setAttribute('disabled', 'disabled')
+        btn2.setAttribute('disabled', 'disabled')
+
+    }
+
+
+}
+
 btn1.addEventListener('click', () => {
     if (!gameover) {
         p1 = p1 + 1;
-        if (win === p1) {
-            gameover = true
-            btn1.setAttribute('disabled', 'disabled')
-            btn2.setAttribute('disabled', 'disabled')
+        // if (win === p1) {
+        //     gameover = true
+        //     btn1.setAttribute('disabled', 'disabled')
+        //     btn2.setAttribute('disabled', 'disabled')
 
-        }
+        // }
+        winner(p1, win)
         player1.textContent = p1
     }
+
+
+
 
 })
 
@@ -34,16 +50,28 @@ btn2.addEventListener('click', () => {
     if (!gameover) {
         p2 = p2 + 1
 
-        if (win === p2) {
-            gameover = true
-            btn1.setAttribute('disabled', 'disabled')
-            btn2.setAttribute('disabled', 'disabled')
+        // if (win === p2) {
+        //     gameover = true
+        //     btn1.setAttribute('disabled', 'disabled')
+        //     btn2.setAttribute('disabled', 'disabled')
 
-        }
+        // }
+        winner(p2, win)
         player2.textContent = p2;
+
     }
 
+
+
 })
+input.addEventListener('change', () => {
+    // console.log(input.value)
+    win = Number(input.value)
+    winingScoreDisplay.textContent = input.value;
+    input.value = '';
+    reset()
+})
+
 reset.addEventListener('click', () => {
     p1 = 0;
     p2 = 0;
