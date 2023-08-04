@@ -19,6 +19,14 @@ let gameover = false
 
 function winner(oldscore, win) {
     if (oldscore === win) {
+        if (p1 === win) {
+            player1.classList.add('winner')
+
+        } else {
+            player2.classList.add('winner')
+
+        }
+
         gameover = true
         btn1.setAttribute('disabled', 'disabled')
         btn2.setAttribute('disabled', 'disabled')
@@ -80,6 +88,10 @@ reset.addEventListener('click', () => {
     player2.textContent = 0;
     btn1.removeAttribute('disabled')
     btn2.removeAttribute('disabled')
+    player1.classList.remove('winner')
+    player2.classList.remove('winner')
+
+
 
 
 })
